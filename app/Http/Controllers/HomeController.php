@@ -49,7 +49,7 @@ class HomeController extends Controller
     {
         Mail::to('ash.rbd@gmail.com')->send(new ContactMail($request)); //dont use this unless mailtrap/smtp etc is given
         // return new ContactMail($request); //for localhost checkiong
-        return redirect('/contact')->with('status',"Thank ypu for your message");
+        return redirect('/contact')->with('status',"Thank you for your message");
         
     }
  
