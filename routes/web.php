@@ -16,7 +16,7 @@ use App\Mail\ContactMail;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 Route::get('/mail', function () {
     
