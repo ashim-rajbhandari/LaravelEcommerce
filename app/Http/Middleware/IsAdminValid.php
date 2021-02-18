@@ -16,7 +16,7 @@ class IsAdminValid
     public function handle($request, Closure $next)
     {
        
-        if (Auth::user()->is_admin !== 1){
+        if (Auth::user()->is_admin != TRUE){
              return response('Not allowed'); 
         }
         return $next($request);
