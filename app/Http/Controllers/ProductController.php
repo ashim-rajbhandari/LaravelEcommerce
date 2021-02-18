@@ -129,7 +129,7 @@ class ProductController extends Controller
                 $cart->save();
             }
         }
-        return redirect('/product');
+        return back();
     }
 
     /**
