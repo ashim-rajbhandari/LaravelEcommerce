@@ -48,7 +48,7 @@ class HomeController extends Controller
     public function contactsend(ContactUs $request)
     {
         Mail::to('ash.rbd@gmail.com')->send(new ContactMail($request)); //dont use this unless mailtrap/smtp etc is given
-        // return new ContactMail($request); //for localhost checkiong
+        // return new ContactMail($request); //for localhost checking
         return redirect('/contact')->with('status',"Thank you for your message");
         
     }

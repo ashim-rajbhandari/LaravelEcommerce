@@ -9,7 +9,7 @@ use App\Product;
 use App\User;
 use App\Cart;
 use Auth;
-use App\Notifications\Giveaway; 
+use App\Notifications\GiveAway; 
 
 
 class ProductController extends Controller
@@ -202,7 +202,7 @@ class ProductController extends Controller
             $c->save();
         }
 
-        User::find(Auth()->user()->id)->notify(new Giveaway());
+        User::find(Auth()->user()->id)->notify(new GiveAway());
        
         return redirect('/cart');
     }
