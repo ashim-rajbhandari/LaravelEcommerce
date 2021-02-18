@@ -8,7 +8,7 @@ use App\User;
 class Product extends Model
 {
     protected $fillable = [
-        'user_id', 'product_name', 'product_price',
+        'product_name', 'product_price','product_quantity','category',
     ];   
 
     public function user()

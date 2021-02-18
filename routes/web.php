@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Mail\ContactMail;
-
+use App\Http\Middleware\IsAdminValid;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,3 +54,12 @@ Route::get('/read', function () {
 
 });
 
+//for admin
+Route::post('/lv_login', 'Admin\LoginController@authenticate');
+Route::get('/lv_login', 'AdminController@showadminloginform');
+
+Route::post('/lv_register', 'Admin\RegisterController@create');
+Route::get('/lv_register', 'AdminController@showadminregistrationform');
+
+Route::get('/product/create', 'AdminController@create')->middleware(IsAdminValid::class);
+Route::post('/product', 'AdminController@store'); //product- url

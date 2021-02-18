@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,12 @@ use Illuminate\Support\Facades\Route;
     
 //     return $request->user();
 // });
-Route::get('/user', function (Request $request) {
-    return "hello";
+Route::get('/data', function (Request $request) {
+    return response()->json([
+         ['product_name'=> "tv",'product_price'=> 200 , 'product_quantity'=>5],
+         ['product_name'=> "shoe",'product_price'=> 200 , 'product_quantity'=>5],
+         ['product_name'=> "pr",'product_price'=> 200 , 'product_quantity'=>5],
+         ['product_name'=> "dj",'product_price'=> 200 , 'product_quantity'=>5], 
+    ]);
 });
 

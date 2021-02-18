@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
 use App\Product;
 use App\User;
 use App\Cart;
 use Auth;
 use App\Notifications\Giveaway; 
+
 
 class ProductController extends Controller
 {
@@ -26,10 +28,19 @@ class ProductController extends Controller
     
     public function index()
     {
+    //API OF PRODUCT
+        //    $response = Http::timeout(60)->get('http://localhost:1000/api/data');
+        //    $data =$response->json();
+        //    return view('api')->with('data',$data);
+    //END OF API PRODUCT 
+    
+    
+    //PLEASE UNCOMMENT THIS FOR PRODUCT DB
         $products = Product::all();      // dd db/ele/collection // gettype object
         $sort='All Product';
+        
         return view('product')->with(['products'=>$products,'sort'=>$sort]);
-    }
+     }
 
     public function cartview()
     {

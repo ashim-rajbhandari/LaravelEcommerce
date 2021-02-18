@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-10">
-            <h2>{{$sort}}</h2>
+            <h2>lol</h2>
             </div>
             <div class="col">    
                 <div class="dropdown">
@@ -33,19 +33,19 @@
 <div class="container">
        <div class="card-deck">
        
-        @foreach($products->chunk(5) as $chunk)
+        @foreach($data as $d)
         <div class="row">
-            @foreach ($chunk as $p)
+          
                 
             
         <div class="card shadow-sm round" style="margin-bottom: 15px;">
-          <form method="post" action="{{route('product.store',[$p->id])}}">
+          <form method="post" action="{{route('product.store',[$d['id']])}}">
             {{ csrf_field() }} 
           <img src="{{asset('storage/photos/seeds.png')}}" class="card-img-top" alt="">
           <div class="card-body">
-            @if($p->product_quantity!= 0)
-          <h5 class="card-title"><a href="">{{$p->product_name}}</a></h5>
-          <p class="card-text">price: {{$p->product_price}}</p>
+            @if($d['product_quantity']!= 0)
+          <h5 class="card-title"><a href="">{{$d['product_name']}}</a></h5>
+          <p class="card-text">price: {{$d['product_price']}}</p>
             @auth
           <p class="card-text"><input type="number" name="qt" value="1"></p>
             
@@ -55,8 +55,8 @@
            <p class="card-text"> Login to buy </p>  
            @endguest
            @else
-                  <h5 class="card-title">{{$p->product_name}}</a></h5>
-                  <p class="card-text">price: {{$p->product_price}}</p>
+                  <h5 class="card-title">{{$d['product_name']}}</a></h5>
+                  <p class="card-text">price: {{$d['product_price']}}</p>
                   <h1 class="card-text">Sold</h1>
                   
                    @endif
@@ -66,7 +66,7 @@
           </div>
         </form>
         </div> 
-        @endforeach </div>
+        </div>
     @endforeach
       </div> 
 </div>
