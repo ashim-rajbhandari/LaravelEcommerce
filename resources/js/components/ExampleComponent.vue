@@ -13,7 +13,11 @@
         </div>
     </div>
 </template>
-
+<style>
+   .card-body{
+       background-color : red;
+   }
+</style>
 <script>
     export default {
         mounted() {

@@ -61,5 +61,12 @@ Route::get('/lv_login', 'AdminController@showadminloginform');
 Route::post('/lv_register', 'Admin\RegisterController@create');
 Route::get('/lv_register', 'AdminController@showadminregistrationform');
 
-Route::get('/product/create', 'AdminController@create')->middleware(IsAdminValid::class);
-Route::post('/product', 'AdminController@store'); //product- url
+Route::get('/admin/product', 'AdminController@index')->middleware(IsAdminValid::class);
+Route::get('/admin/product/create', 'AdminController@create')->middleware(IsAdminValid::class);
+Route::post('/admin/product', 'AdminController@store')->middleware(IsAdminValid::class); //product- url
+Route::get('/admin/product/{product}/edit', 'AdminController@edit')->middleware(IsAdminValid::class);
+Route::delete('/admin/product/{product}', 'AdminController@destroy')->middleware(IsAdminValid::class);
+Route::patch('/admin/product/{product}', 'AdminController@update')->middleware(IsAdminValid::class);
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(IsAdminValid::class);;
