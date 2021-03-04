@@ -41,7 +41,7 @@
         <div class="card shadow-sm round" style="margin-bottom: 15px;">
           <form method="post" action="{{route('product.store',[$p->id])}}">
             {{ csrf_field() }} 
-          <img src="{{asset('storage/photos/seeds.png')}}" class="card-img-top" alt="img">
+          <img src="{{asset('storage/photos/seeds.png')}}" class="card-img-top" alt="">
           <div class="card-body">
             @if($p->product_quantity!= 0)
           <h5 class="card-title"><a href="">{{$p->product_name}}</a></h5>
