@@ -28,10 +28,10 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $Validateddata = $request->validate([
-            'name' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
+            'name' => ['required','alpha'],
+            'category' => ['required','alpha-dash'],
+            'price' => ['required','numeric'],
+            'quantity' => ['required','numeric'],
         ]);
 
         $data = [
@@ -41,9 +41,11 @@ class AdminController extends Controller
             'product_quantity' => $Validateddata['quantity'],
         ];
         
-        $product = new Product;
-        Product::create($data);
 
+        $this->authorize('create', Product::class); 
+        Product::create($data);
+        
+      
         return redirect()->back();
     }
 
@@ -55,10 +57,10 @@ class AdminController extends Controller
     public function update(Request $request , Product $product)
     {
         $Validateddata = $request->validate([
-            'name' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
+            'name' => ['required','alpha'],
+            'category' => ['required','alpha-dash'],
+            'price' => ['required','numeric'],
+            'quantity' => ['required','numeric'],
         ]);
 
         $data = [
@@ -68,6 +70,7 @@ class AdminController extends Controller
             'product_quantity' => $Validateddata['quantity'],
         ];
         
+        $this->authorize('update', $product); 
         $product->update($data);
 
         return redirect('/admin/product');
@@ -75,6 +78,7 @@ class AdminController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product); 
         $product->delete();
 
         return back();

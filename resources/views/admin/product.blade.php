@@ -13,7 +13,7 @@
         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
         <div class="col-md-6">
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" required name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
             @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
         <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
 
         <div class="col-md-6">
-            <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" required>
+            <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" required name="price" >
 
             @error('price')
                 <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
         <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
         <div class="col-md-6">
-            <input id="category" type="text" class="form-control @error('category') is-invalid @enderror" name="category" required autocomplete="new-category">
+            <input id="category" type="text" class="form-control @error('category') is-invalid @enderror" required name="category"  autocomplete="new-category">
 
             @error('category')
                 <span class="invalid-feedback" role="alert">
@@ -55,7 +55,13 @@
         <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
 
         <div class="col-md-6">
-            <input id="quantity" type="number" class="form-control" name="quantity" required>
+            <input id="quantity" type="number" class="form-control @error('quantity') is-invalid @enderror" required name="quantity" >
+       
+        @error('quantity')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
         </div>
     </div>
 

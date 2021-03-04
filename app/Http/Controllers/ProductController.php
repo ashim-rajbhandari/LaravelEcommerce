@@ -213,7 +213,7 @@ class ProductController extends Controller
         
         if ($product=="max"){
         //$p=Product::orderByDesc('product_price')->get();   for eleqouent 
-        $products= Product::all()->sortByDesc('product_price'); //use colleection helper
+        $products= Product::all()->sortByDesc('product_price'); //use collection helper
          $sort= "High to low";
         }
 

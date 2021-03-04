@@ -52,3 +52,34 @@
 
 </div>
 @endsection
+
+
+
+@section('footer')
+<div class="container-fluid shadow-sm round bg-dark" style="margin-top: 60px;">
+  <div class="row" style="padding-bottom:20px;padding-top:20px;color:white">
+    <div class="about col">
+      <div style="padding-left: 100px">
+      <h2>About us</h2>
+      <p> nothing to say,just buy it</p>
+    </div>
+    </div>
+
+    <div class="logo col" >
+      <h2 class="logo" style="margin-left:40%;margin-top:10%"> SalesBay</h2>
+    </div>
+  
+    <div class="social col text-center" >
+      <ul>
+        <h3>Follow us </h3>
+        <li  class="f" style="list-style: none" >facebook</li>
+        <li class="f" style="list-style: none">instagram</li>
+        <li  class="f" style="list-style: none">whatsapp</li>
+        <li  class="f" style="list-style: none">youtube</li>
+        
+      </ul>
+    </div>
+  </div>
+  
+  </div>
+  @endsection
