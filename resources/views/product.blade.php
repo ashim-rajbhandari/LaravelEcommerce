@@ -33,11 +33,11 @@
 <div class="container">
        <div class="card-deck">
        
-        {{-- @foreach($products->chunk(5) as $chunk)
+        @foreach($products->chunk(8) as $chunk)
         <div class="row">
-            @foreach ($chunk as $p) --}}
-          @foreach ($products as $p)
-              
+            @foreach ($chunk as $p)
+                
+            
         <div class="card shadow-sm round" style="margin-bottom: 15px;">
           <form method="post" action="{{route('product.store',[$p->id])}}">
             {{ csrf_field() }} 
@@ -66,17 +66,15 @@
           </div>
         </form>
         </div> 
-        @endforeach 
-    {{-- </div>
-    @endforeach --}}
+        @endforeach </div>
+    @endforeach
       </div> 
 </div>
-    {{-- </div>
+    </div>
 
-    </div>     --}}
+    </div>    
 
 @endsection
-
 
 
 @section('footer')
