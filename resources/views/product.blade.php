@@ -33,7 +33,7 @@
 <div class="container">
        <div class="card-deck">
        
-        @foreach($products->chunk(8) as $chunk)
+        @foreach($products->chunk(6) as $chunk)
         <div class="row">
             @foreach ($chunk as $p)
                 
