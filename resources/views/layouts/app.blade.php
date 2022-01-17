@@ -10,7 +10,9 @@
     <title>{{ config('app.name', 'Salesbay') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" defer></script> 
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+ 
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -75,7 +77,7 @@
        
                
                @guest
-               <li class="nav-item">
+               <li class="nav-item" >
                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                </li>
                @if (Route::has('register'))
@@ -107,10 +109,139 @@
          </nav>
 
          <div style="margin-top:53px;">
-            @yield('content')
+            @yield('content') 
        </div>
     </div>
 
     @yield('footer')
+
+    <script>
+//Note (form and input use submit/form id ) (form and button use click and button id)
+     document.addEventListener('DOMContentLoaded', function () {
+ 
+    //store
+    $(document).on("click","#jsbtn",function(event){
+      event.preventDefault();
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+     
+
+        name = $('#name').val();
+        price = $('#price').val();
+        
+        category = $('#category').val();
+        console.log(quantity = $('#quantity').val());
+         
+
+        $.ajax({
+          url: "/admin/product",
+          type: "POST",
+          data: //$('#product_form').serialize(),
+          {   
+          // _token:" {{csrf_token()}}",
+              name:name,
+              price:price,
+              category:category,
+              quantity:quantity,
+          },  
+
+          success:function(response){
+            console.log("success");
+            //$("#product_form")[0].reset();
+            $("#product_form").load(location.href + ' #product_form');
+            //window.location.href = "/admin/product";
+          }
+      })
+    })
+
+
+    //delete
+    $(document).on("submit",".form-delete" ,function( event ) {
+      event.preventDefault(); 
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      
+      data = $(this);
+      dataid = data[0][2].id;
+      id = $('#'+dataid).val();
+      
+      $.ajax({
+          url: "/admin/product/" + id,
+          type: "DELETE",
+          data:
+          {
+            // _token:" {{csrf_token()}}",
+              id:id,
+              
+          },  
+
+          success:function(response){
+            console.log(response);
+            $("#list").load(location.href + " #list");
+            //window.location.href = "/admin/product";
+          }
+      })
+    })
+
+    //update 
+    $(document).on("submit","#form-update" ,function( event ) {
+      event.preventDefault(); 
+
+      $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      id=$('#uid').val();
+      console.log(id);
+      name = $('#name').val();
+      price = $('#price').val();  
+      category = $('#category').val();
+      quantity = $('#quantity').val();
+      
+      $.ajax({
+          url : "/admin/product/" + id,
+          type: "Patch",
+          data: //$('#product_form').serialize(),
+          {   
+          // _token:" {{csrf_token()}}",
+              name:name,
+              price:price,
+              category:category,
+              quantity:quantity,
+          },  
+
+          success:function(response){
+            //console.log("updated");
+            $("form-update").load(location.href + ' #form-update');
+            //$("body").load(location.href + ' #product_index');
+            //window.location.href = "/admin/product";
+          }
+      })
+    })
+    
+    //edit without page reload
+    $(document).on("click",".edit" ,function( event ) {
+      event.preventDefault();
+
+      a = $('.edit').attr('href');
+      $("body").load(a);
+      window.history.pushState({},"",a);   //kaam chalau ho back garda problem aauxa
+      
+    })
+});
+
+  
+
+
+      </script>
+
 </body>
 </html>

@@ -1,27 +1,34 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
+    <div class="container">     
+        <div class="box container-fluid rounded" :class= "classcolor" >
+                <li> <slot></slot></li>
+                <span class="badge badge-secondary float-right">{{ user }}</span>
         </div>
+       
     </div>
 </template>
-<style>
-   .card-body{
-       background-color : red;
+<style scoped>
+   .box{
+       padding : 20px;
+       margin-bottom: 10px;
+   }
+   li{
+       list-style-type: none;
    }
 </style>
 <script>
     export default {
+        props :['user','color'],
+        
         mounted() {
-            console.log('Component mounted.')
+            console.log('Component mounted.');
+        },
+        computed:{
+            classcolor() {
+                return this.color;
         }
+    },
+       
+        
     }
 </script>

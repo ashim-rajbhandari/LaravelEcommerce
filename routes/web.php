@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\User;
 use App\Mail\ContactMail;
 use App\Http\Middleware\IsAdminValid;
+use App\Events\ChatEvent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,3 +72,10 @@ Route::patch('/admin/product/{product}', 'AdminController@update')->middleware(I
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(IsAdminValid::class);;
+
+
+
+//Event and listener
+Route::post('/send','ChatController@send');
+
+Route::get('/chat', 'ChatController@index');

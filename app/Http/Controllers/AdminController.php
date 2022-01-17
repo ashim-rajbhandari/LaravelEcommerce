@@ -16,17 +16,24 @@ class AdminController extends Controller
     {
         return view('admin.registration');
     }
+    
+    
+    //admin
     public function index()
     {
       $products = Product::all();
-      return view('admin.product-index')->with('products', $products); 
+     
+      return view('js.product-index')->with('products', $products);
+      //return view('admin.product-index')->with('products', $products); 
     }
     public function create()
     {
-      return view('admin.product'); 
+      return view('js.product'); 
+      //return view('admin.product'); 
     }
     public function store(Request $request)
     {
+        
         $Validateddata = $request->validate([
             'name' => ['required','alpha'],
             'category' => ['required','alpha-dash'],
@@ -45,13 +52,14 @@ class AdminController extends Controller
         $this->authorize('create', Product::class); 
         Product::create($data);
         
-      
+
         return redirect()->back();
     }
 
     public function edit(Product $product)
     {
-        return view('admin.product-edit')->with('product',$product);
+        return view('js.product-edit')->with('product',$product);
+        //return view('admin.product-edit')->with('product',$product);
     }
 
     public function update(Request $request , Product $product)
@@ -73,15 +81,18 @@ class AdminController extends Controller
         $this->authorize('update', $product); 
         $product->update($data);
 
-        return redirect('/admin/product');
+        //return redirect('/admin/product');
+        return "updated";
     }
 
     public function destroy(Product $product)
-    {
+    { 
         $this->authorize('delete', $product); 
         $product->delete();
-
-        return back();
+  
+             
+        //return back(); for laravel
+        return "deleted";
     }
 
 }

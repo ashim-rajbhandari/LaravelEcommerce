@@ -2,7 +2,7 @@
 
 @section('content')
 {{-- carousel --}}
-  {{-- <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="false">
+  <!-- <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel" data-interval="false">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{{asset('storage/photos/logo.jpg')}}" class="d-block w-100" alt="...">
@@ -34,15 +34,15 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>  --}}
+  </div>  -->
 
 {{-- new category --}}
 
-{{-- <h3>New category</h3>  --}}
+ <!-- <h3>New category</h3>  -->
 <div class="container"  style="margin-top:60px;">
 <h3 class="title"> Digital Product </h3>
    <div class="card-deck">
-       
+   <img src="{{asset('storage/photos/seeds.png')}}" class="card-img-top" alt="no image">
     @foreach($digital as $d) 
     <div class="card shadow-sm round" >
       <form method="post" action="{{route('product.store',[$d->id])}}">

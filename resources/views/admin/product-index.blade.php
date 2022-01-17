@@ -17,7 +17,7 @@
         </div>
 
         <div>
-        <form method="post" action="/admin/product/{{ $product->id}}">
+        <form id="form-delete" method="post" action="/admin/product/{{ $product->id}}">
             {{csrf_field()}}  
             {{method_field('DELETE')}}
             <input type="submit" value="delete" class="btn btn-danger"> 
